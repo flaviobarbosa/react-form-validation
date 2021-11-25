@@ -44,12 +44,28 @@ export default function App() {
 
         <label>
           Phone:
-          <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" />
+          <input
+            type="text"
+            {...register("phone", {
+              required: true,
+              pattern: /^[0-9]{1}-[0-9]{4}-[0-9]{4}/i
+            })}
+          />
+          {errors?.phone?.type === "required" && <span>required</span>}
+          {errors?.phone?.type === "pattern" && <span>invalid pattern</span>}
         </label>
 
         <label>
           Email:
-          <input type="email" />
+          <input
+            type="email"
+            {...register("email", {
+              required: true,
+              pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i
+            })}
+          />
+          {errors?.email?.type === "required" && <span>required</span>}
+          {errors?.email?.type === "pattern" && <span>invalid email</span>}
         </label>
 
         <button type="submit">Submit</button>
