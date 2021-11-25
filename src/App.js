@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import "./styles.css";
@@ -8,7 +7,7 @@ export default function App() {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm({ reValidateMode: "onBlur" });
 
   const onSubmit = (data) => console.log(data);
 
